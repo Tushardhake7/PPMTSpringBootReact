@@ -23,7 +23,7 @@ import com.example.demo.services.MapValidationErrorService;
 import com.example.demo.services.ProjectService;
 
 @RestController
-@RequestMapping("api/project/")
+@RequestMapping("api/project")
 public class ProjectController {
 	
 	@Autowired
@@ -46,6 +46,12 @@ public class ProjectController {
 	public ResponseEntity<?> getProjectById(@PathVariable String projectId){
 		Project project = projectService.findProjectByIdentifer(projectId);
 		return new ResponseEntity<Project>(project, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/all")
+	public List<Project> getAllProjects() {
+		return projectService.findAllProjects();
 	}
 	
 }
